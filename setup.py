@@ -12,7 +12,7 @@ sources = [
 ]
 
 extension = Extension(
-                "pyddc.pyddc",
+                "pyddc",
                 sources=sources,
                 language="c++",
                 include_dirs = ["pyddc/include"],
