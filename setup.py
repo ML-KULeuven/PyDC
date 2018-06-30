@@ -4,10 +4,10 @@ from setuptools.extension import Extension
 
 
 sources = [
-        "pyddc/pydc.pyx",
-        "pyddc/src/dc.cpp",
-        "pyddc/src/ddc.cpp",
-        "pyddc/src/base.cpp"
+        "pydc/pydc.pyx",
+        "pydc/src/dc.cpp",
+        "pydc/src/ddc.cpp",
+        "pydc/src/base.cpp"
 ]
 
 extension = Extension(
@@ -29,7 +29,7 @@ setup(
         author='Pedro Zuidberg Dos Martires',
         author_email='pedro.zuidbergdosmartires@cs.kuleuven.be',
         url='https://github.com/ML-KULeuven',
-        packages=['pyddc'],
+        packages=['pydc'],
         license='Apache 2.0',
         ext_modules = ext_modules,
         zip_safe=False
