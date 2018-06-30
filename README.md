@@ -10,7 +10,7 @@ First make sure that you have installed Distributional Clauses (including YAP) f
 
 First clone the repo to your machine:
 ```
-git clone https://username@bitbucket.org/pedrozudo/pydc.git
+git clone https://github.com/ML-KULeuven/PyDC.git pydc
 ```
 and execute the following steps:
 ```
