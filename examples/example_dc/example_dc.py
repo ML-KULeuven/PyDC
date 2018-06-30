@@ -1,4 +1,4 @@
-from pyddc import DC
+from pydc import DC
 
 
 def main():
