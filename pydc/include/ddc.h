@@ -30,7 +30,9 @@ class ddc: public base
 
 		bool initialize_particles();
 		bool step(string actions,string observations,double delta);
-		double querylist(string id,string query,vector<string> &ids,vector<double> &probs);
 		double query(string q);
+		double querylist(string id, string query, vector<string> &ids, vector<double> &probs);
 };
+
+
 #endif

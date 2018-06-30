@@ -4,18 +4,17 @@ from setuptools.extension import Extension
 
 
 sources = [
-        "pyddc/pyddc.pyx",
+        "pyddc/pydc.pyx",
         "pyddc/src/dc.cpp",
         "pyddc/src/ddc.cpp",
-
         "pyddc/src/base.cpp"
 ]
 
 extension = Extension(
-                "pyddc",
+                "pydc",
                 sources=sources,
                 language="c++",
-                include_dirs = ["pyddc/include"],
+                include_dirs = ["pydc/include"],
                 extra_compile_args = ["-std=c++11"],
                 cython_directives={"embedsignature": True},
                 libraries = ["Yap"]
@@ -26,7 +25,7 @@ ext_modules = cythonize([extension], gdb_debug=False)
 
 
 setup(
-        name="PyDDC",
+        name="PyDC",
         author='Pedro Zuidberg Dos Martires',
         author_email='pedro.zuidbergdosmartires@cs.kuleuven.be',
         url='https://github.com/ML-KULeuven',

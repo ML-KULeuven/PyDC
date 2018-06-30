@@ -2,5 +2,5 @@ build
 dist
 *.pyc
 *.so
-pyddc.cpp
-PyDDC.egg-info
+pydc.cpp
+PyDC.egg-info
