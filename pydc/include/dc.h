@@ -18,12 +18,15 @@ class initerrordc: public std::exception
 };
 
 class dc : public base {
+   private:
+      bool initialize_dc();
+   
+
 	public:
       dc();
 		dc(string file, int n);
 		~dc();
 
-      bool initialize_dc();
 		double query(string query,string evidence);
 		double query(string query,string evidence, int n_samples);
 };

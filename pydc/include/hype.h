@@ -22,6 +22,9 @@ class initerrorhype: public std::exception
 
 class hype: public ddc
 {
+   private:
+      bool initialize_plan();
+
 
 	public:
       hype();
@@ -29,7 +32,18 @@ class hype: public ddc
       ~hype();
 
 
-		// bool plan_step(string observations, bool use_abstraction, uint32_t nb_samples, uint32_t max_horizon, uint32_t used_horizon, string &best_action, float &total_reward, uint32_t &time, bool &stop);
+
+		bool plan_step(
+         string observations,
+         bool use_abstraction,
+         uint32_t nb_samples,
+         uint32_t max_horizon,
+         uint32_t used_horizon,
+         string &best_action,
+         float &total_reward,
+         uint32_t &time,
+         bool &stop
+      );
 
 };
 #endif

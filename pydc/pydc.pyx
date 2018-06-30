@@ -1,3 +1,5 @@
+from libcpp cimport bool, float
+from libc.stdint cimport uint32_t
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
@@ -43,6 +45,37 @@ cdef class DDC:
       cdef vector[string] args_vec
       cdef vector[double] prob_vec
       self.ddc_c.querylist(args_query, query, args_vec, prob_vec)
-
-
       return dict(zip(args_vec, prob_vec))
+
+
+
+#HYPE
+cdef extern from "hype.h":
+   cdef cppclass hype:
+      hype() except +
+      hype(string file, int n_particles) except +
+      bool plan_step(
+         string observations,
+         bool use_abstraction,
+         uint32_t nb_samples,
+         uint32_t max_horizon,
+         uint32_t used_horizon,
+         string &best_action,
+         float &total_reward,
+         uint32_t &time,
+         bool &stop
+      )
+
+cdef class HYPE:
+   cdef hype hype_c
+   def __cinit__(self, string model_file, int n_samples=0):
+      self.hype_c = hype(model_file, n_samples)
+   def plan_step(self, string observations, uint32_t nb_samples, uint32_t max_horizon=10, uint32_t used_horizon=5, bool use_abstraction=False):
+      cdef string best_action
+      cdef float total_reward
+      cdef uint32_t time
+      cdef bool stop
+
+      self.plan_step(observations, use_abstraction, nb_samples, max_horizon, used_horizon,best_action,total_reward,time,stop)
+
+      return {'best_action':best_action, 'total_reward':total_reward, 'time':time, 'stop':stop}

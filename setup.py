@@ -5,9 +5,10 @@ from setuptools.extension import Extension
 
 sources = [
         "pydc/pydc.pyx",
+        "pydc/src/base.cpp",
         "pydc/src/dc.cpp",
         "pydc/src/ddc.cpp",
-        "pydc/src/base.cpp"
+        "pydc/src/hype.cpp",        
 ]
 
 extension = Extension(

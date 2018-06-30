@@ -22,13 +22,14 @@ class initerrorddc: public std::exception
 
 class ddc: public base
 {
+   private:
+		bool initialize_particles();
 
 	public:
       ddc();
 		ddc(string file, int n_particles);
       ~ddc();
 
-		bool initialize_particles();
 		bool step(string actions,string observations,double delta);
 		double query(string q);
 		double querylist(string id, string query, vector<string> &ids, vector<double> &probs);
