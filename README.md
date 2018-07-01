@@ -15,7 +15,7 @@ git clone https://github.com/ML-KULeuven/PyDC.git pydc
 and execute the following steps:
 ```
 cd pydc
-python setup.py install --force
+Python setup.py install --force
 ```
 This should build and install the PyDC library on your machine.
 
@@ -23,6 +23,6 @@ This should build and install the PyDC library on your machine.
 
 To make sure that everything is in order try running one of the examples, e.g.:
 ```
-python examples/example_dc/example_dc.py
+Python examples/example_dc/example_dc.py
 ```
 The examples are quiet self explanatory and should describe most of the API-options available in wrapper.
