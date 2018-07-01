@@ -3,6 +3,8 @@ from libc.stdint cimport uint32_t
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
+from collections import OrderedDict
+
 #Distributional Clauses
 cdef extern from "dc.h":
    cdef cppclass dc:
@@ -45,7 +47,7 @@ cdef class DDC:
       cdef vector[string] args_vec
       cdef vector[double] prob_vec
       self.ddc_c.querylist(args_query, query, args_vec, prob_vec)
-      return dict(zip(args_vec, prob_vec))
+      return OrderedDict(zip(args_vec, prob_vec))
 
 
 
