@@ -5,6 +5,13 @@ from libcpp.vector cimport vector
 
 from collections import OrderedDict
 
+from problog.logic import Term
+
+
+def str2term(str):
+   term = Term.from_string(str)
+   return term
+
 #Distributional Clauses
 cdef extern from "dc.h":
    cdef cppclass dc:
