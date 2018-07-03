@@ -6,6 +6,8 @@ Python wrapper package to interact with models you write int the probabilistic l
 
 First make sure that you have installed Distributional Clauses (including YAP) following the instructions on the repo of Distributional Clauses.
 
+If you want to have access to the function `str2term`, which parses a string into a python object that emulates the semantics of Prolog terms, you need to additionally install the [ProbLog](https://bitbucket.org/problog/problog/src/master/) library.
+
 ## Installation ##
 
 First clone the repo to your machine:
