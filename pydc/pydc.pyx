@@ -1,5 +1,3 @@
-import sys
-
 from libcpp cimport bool, float
 from libc.stdint cimport uint32_t
 from libcpp.string cimport string
@@ -7,13 +5,18 @@ from libcpp.vector cimport vector
 
 from collections import OrderedDict
 
+
+problog_imported = False
 try:
-   import problog
    from problog.logic import Term
+except:
+   plTerm_imported = False
+else:
+   plTerm_imported = True
 
 
 def str2term(str):
-   if "problog" in sys.modules:
+   if plTerm_imported:
       term = Term.from_string(str)
       return term
    else:
