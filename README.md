@@ -17,7 +17,7 @@ git clone https://github.com/ML-KULeuven/PyDC.git pydc
 and execute the following steps:
 ```
 cd pydc
-Python setup.py install --force
+python setup.py install --force
 ```
 This should build and install the PyDC library on your machine.
 
