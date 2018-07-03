@@ -6,7 +6,6 @@ from libcpp.vector cimport vector
 from collections import OrderedDict
 
 
-problog_imported = False
 try:
    from problog.logic import Term
 except:
