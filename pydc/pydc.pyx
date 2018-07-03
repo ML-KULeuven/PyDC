@@ -1,3 +1,5 @@
+import sys
+
 from libcpp cimport bool, float
 from libc.stdint cimport uint32_t
 from libcpp.string cimport string
@@ -5,12 +7,18 @@ from libcpp.vector cimport vector
 
 from collections import OrderedDict
 
-from problog.logic import Term
+try:
+   import problog
+   from problog.logic import Term
 
 
 def str2term(str):
-   term = Term.from_string(str)
-   return term
+   if "problog" in sys.modules:
+      term = Term.from_string(str)
+      return term
+   else:
+      print("No install of problog found return original string")
+      return str
 
 #Distributional Clauses
 cdef extern from "dc.h":
