@@ -3,6 +3,8 @@ from libc.stdint cimport uint32_t
 from libcpp.string cimport string
 from libcpp.vector cimport vector
 
+import os
+import sys
 from collections import OrderedDict
 
 
@@ -12,6 +14,15 @@ except:
    plTerm_imported = False
 else:
    plTerm_imported = True
+
+
+def _get_file_path(model_file):
+   cwd = os.getcwd()
+   cwd_sys = sys.argv[0]
+   cwd_sys = os.path.dirname(cwd_sys)
+   path_model_file = os.path.join(cwd,cwd_sys,model_file)
+   print(path_model_file)
+   return path_model_file
 
 
 def str2term(str):
@@ -34,7 +45,8 @@ cdef extern from "dc.h":
 cdef class DC:
    cdef dc dc_c
    def __cinit__(self, string model_file, int n_samples=0):
-      self.dc_c = dc(model_file, n_samples)
+      path_model_file = _get_file_path(model_file)
+      self.dc_c = dc(path_model_file, n_samples)
    def query(self, string query, string evidence="", int n_samples=0):
       if n_samples:
          return self.dc_c.query(query, evidence, n_samples)
@@ -55,7 +67,8 @@ cdef extern from "ddc.h":
 cdef class DDC:
    cdef ddc ddc_c
    def __cinit__(self, string model_file, int n_samples=0):
-      self.ddc_c = ddc(model_file, n_samples)
+      path_model_file = _get_file_path(model_file)
+      self.ddc_c = ddc(path_model_file, n_samples)
    def step(self, string observations="", string actions="", double delta=1.0):
       return self.ddc_c.step(actions, observations, delta)
    def query(self, string query):
@@ -88,7 +101,8 @@ cdef extern from "hype.h":
 cdef class HYPE:
    cdef hype hype_c
    def __cinit__(self, string model_file, int n_samples=0):
-      self.hype_c = hype(model_file, n_samples)
+      path_model_file = _get_file_path(model_file)
+      self.hype_c = hype(path_model_file, n_samples)
    def plan_step(self, string observations, uint32_t nb_samples, uint32_t max_horizon=10, uint32_t used_horizon=5, bool use_abstraction=False):
       cdef string best_action
       cdef float total_reward
