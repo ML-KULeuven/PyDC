@@ -1,9 +1,8 @@
 from pydc import DDC
-import os
-dir_path = os.path.dirname(os.path.realpath(__file__))
+
 
 def main():
-    ddc = DDC(os.path.join(dir_path,"example_ddc.pl"), 500)
+    ddc = DDC("example_ddc.pl", 500)
     prob_m1_0 = ddc.query("current(mindful(1))~=true")
     prob_v1_0 = ddc.query("current(vegan(1))~=true")
     prob_m1_v1_0 = ddc.query("(current(mindful(1))~=true, current(vegan(1))~=true)")
