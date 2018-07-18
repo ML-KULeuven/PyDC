@@ -8,6 +8,9 @@ def main():
     prob_s1 = ddc.query("current(weather)~=sunny")
 
 
+    prob_s1 = ddc.query("(current(temperature(brussels))~=X, X>20)")
+
+
     print(prob_s0)
     print(prob_s1)
 
