@@ -2,9 +2,9 @@ from pydc import DDC
 
 def main():
     ddc = DDC("example_ddc_hmm.pl", 500)
-    prob_s0 = ddc.query("current(weather)~=sunny")
+    prob_s0 = ddc.query("current(weather(brussels))~=sunny")
 
-    ddc.step(observations="observation(activity)~=clean")
+    ddc.step(observations="observation(activity~=clean")
     prob_s1 = ddc.query("current(weather)~=sunny")
 
 
