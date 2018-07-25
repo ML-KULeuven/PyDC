@@ -25,6 +25,6 @@ This should build and install the PyDC library on your machine.
 
 To make sure that everything is in order try running one of the examples, e.g.:
 ```
-Python examples/example_dc/example_dc.py
+python examples/example_dc/example_dc.py
 ```
 The examples are quiet self explanatory and should describe most of the API-options available in wrapper.
