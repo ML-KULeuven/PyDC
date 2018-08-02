@@ -21,7 +21,6 @@ def _get_file_path(model_file):
    cwd_sys = sys.argv[0]
    cwd_sys = os.path.dirname(cwd_sys)
    path_model_file = os.path.join(cwd,cwd_sys,model_file)
-   print(path_model_file)
    return path_model_file
 
 
@@ -44,14 +43,19 @@ cdef extern from "dc.h":
 
 cdef class DC:
    cdef dc dc_c
-   def __cinit__(self, string model_file, int n_samples=0):
+   def __cinit__(self, model_file, int n_samples=0):
       path_model_file = _get_file_path(model_file)
+      path_model_file = path_model_file.encode("UTF-8")
       self.dc_c = dc(path_model_file, n_samples)
-   def query(self, string query, string evidence="", int n_samples=0):
+   def query(self, query, evidence="", int n_samples=0):
+      query = query.encode("UTF-8")
+      evidence = evidence.encode("UTF-8")
       if n_samples:
-         return self.dc_c.query(query, evidence, n_samples)
+         result = self.dc_c.query(query, evidence, n_samples)
+         return result
       else:
-         return self.dc_c.query(query, evidence)
+         result = self.dc_c.query(query, evidence)
+         return result
 
 
 
@@ -66,14 +70,20 @@ cdef extern from "ddc.h":
 
 cdef class DDC:
    cdef ddc ddc_c
-   def __cinit__(self, string model_file, int n_samples=0):
+   def __cinit__(self, model_file, int n_samples=0):
       path_model_file = _get_file_path(model_file)
+      path_model_file = path_model_file.encode("UTF-8")
       self.ddc_c = ddc(path_model_file, n_samples)
-   def step(self, string observations="", string actions="", double delta=1.0):
+   def step(self, observations="", actions="", double delta=1.0):
+      observations = observations.encode("UTF-8")
+      actions = actions.encode("UTF-8")
       return self.ddc_c.step(actions, observations, delta)
-   def query(self, string query):
+   def query(self, query):
+      query = query.encode("UTF-8")
       return self.ddc_c.query(query)
-   def querylist(self, string args_query, string query):
+   def querylist(self, args_query, query):
+      args_query = args_query.encode("UTF-8")
+      query = query.encode("UTF-8")
       cdef vector[string] args_vec
       cdef vector[double] prob_vec
       self.ddc_c.querylist(args_query, query, args_vec, prob_vec)
