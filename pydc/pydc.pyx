@@ -92,6 +92,9 @@ cdef class DDC:
 
 
 #HYPE
+
+#TODO make this work and test
+#inherit from DDC?
 cdef extern from "hype.h":
    cdef cppclass hype:
       hype() except +
