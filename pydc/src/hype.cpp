@@ -55,7 +55,7 @@ bool hype::plan_step(
 		+ std::to_string(used_horizon)
 		+ ", Stop)";
 
-	std::cout << goal << std::endl;
+	// std::cout << goal << std::endl;
 	YAP_Term tmp = YAP_ReadBuffer(goal.c_str(), &error);
 	long safe_t = YAP_InitSlot(tmp); // have a safe pointer to term
 	int res = YAP_RunGoalOnce(tmp);
