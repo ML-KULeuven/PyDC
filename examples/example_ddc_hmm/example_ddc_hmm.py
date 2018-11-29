@@ -5,7 +5,7 @@ def main():
     prob_s0 = ddc.query(
         "current(weather(brussels))~=sunny")
 
-    ddc.step(observations="observation(activity(brussels)~=clean")
+    ddc.step(observations="observation(activity(tintin))~=clean")
     prob_s1 = ddc.query("(current(temperature(brussels))~=X, X>20)")
 
     # prob_s1 = ddc.query("(current(weather(brussels))~=sunny)")
