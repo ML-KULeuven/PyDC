@@ -122,6 +122,6 @@ cdef class HYPE:
       cdef uint32_t time
       cdef bool stop
 
-      self.plan_step(observations, use_abstraction, nb_samples, max_horizon, used_horizon,best_action,total_reward,time,stop)
+      self.hype_c.plan_step(observations, use_abstraction, nb_samples, max_horizon, used_horizon,best_action,total_reward,time,stop)
 
       return {'best_action':best_action, 'total_reward':total_reward, 'time':time, 'stop':stop}
