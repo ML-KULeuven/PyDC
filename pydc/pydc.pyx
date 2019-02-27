@@ -115,6 +115,7 @@ cdef class HYPE:
    cdef hype hype_c
    def __cinit__(self, string model_file, int n_samples=0):
       path_model_file = _get_file_path(model_file)
+      path_model_file = path_model_file.encode("utf-8")
       self.hype_c = hype(path_model_file, n_samples)
    def plan_step(self, string observations, uint32_t nb_samples, uint32_t max_horizon=10, uint32_t used_horizon=5, bool use_abstraction=False):
       cdef string best_action
@@ -124,4 +125,4 @@ cdef class HYPE:
 
       self.hype_c.plan_step(observations, use_abstraction, nb_samples, max_horizon, used_horizon,best_action,total_reward,time,stop)
 
-      return {'best_action':best_action, 'total_reward':total_reward, 'time':time, 'stop':stop}
+      return {'best_action':best_action.decode('utf-8'), 'total_reward':total_reward, 'time':time, 'stop':stop}
