@@ -11,40 +11,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-get_position(X):t <- pos:t ~= distribution(val(X)).
-get_position(X):t <- pos:t ~= X.
+get_position(X):t <- position:t ~= distribution(val(X)).
+get_position(X):t <- position:t ~= X.
 
-stop:t <-
-   \+action(move(_)),
-   get_position(X):t, X>5, writeln(X).
-reward:t ~ val(1000) <- stop:t.
-reward:t ~ val(-1) <- \+stop:t.
-
-
-adm(action(move(left))):t <- true.
-adm(action(move(right))):t <- true.
+stop:t <- get_position(X):t, X>5.
+reward:t ~ val(R) <- stop:t, R is 1000.
+reward:t ~ val(R) <-  \+stop:t, R is -1.
 
 
 
-pos:t+1 ~ val(ObsX) <-
-   observation(pos):t ~= ObsX.
+movement(-1) <- true.
+movement(1) <- true.
+adm(action(move(X))):t <- movement(X).
 
-pos:t+1 ~ val(NX) <-
-   action(move(left)),
+
+
+position:0 ~ val(ObsX) <-
+   observation(position_obs) ~= ObsX.
+position:t+1 ~ val(ObsX) <-
+   observation(position_obs) ~= ObsX.
+position:t+1 ~ val(NX) <-
+   action(move(DX)),
    get_position(X):t,
-   NX is X-1.
-pos:t+1 ~ val(NX) <-
-   writeln(1),
-   action(move(right)),
-   writeln(2),
-   get_position(X):t,
-   NP is X+1.
-
-pos:t+1 ~ val(OldX) <-
+   NX is X+DX.
+position:t+1 ~ val(OldX) <-
    get_position(OldX):t.
 
-
-observation(pos):t+1 ~ val(_).
+observation(position_obs):t+1 ~ val(_) <- true.
 
 
 
