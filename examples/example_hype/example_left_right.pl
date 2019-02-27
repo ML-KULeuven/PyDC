@@ -27,7 +27,7 @@ adm(action(move(right))):t <- true.
 
 
 pos:t+1 ~ val(ObsX) <-
-   observation(pos) ~= ObsX.
+   observation(pos):t ~= ObsX.
 
 pos:t+1 ~ val(NX) <-
    action(move(left)),
