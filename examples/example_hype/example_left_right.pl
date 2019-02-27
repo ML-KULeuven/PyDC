@@ -28,8 +28,6 @@ adm(action(move(X))):t <- movement(X).
 
 position:0 ~ val(ObsX) <-
    observation(position_obs) ~= ObsX.
-position:t+1 ~ val(ObsX) <-
-   observation(position_obs) ~= ObsX.
 position:t+1 ~ val(NX) <-
    action(move(DX)),
    get_position(X):t,

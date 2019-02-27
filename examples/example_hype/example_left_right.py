@@ -13,10 +13,10 @@ class World(object):
         self.n_right = 0
 
     def execute_action(self, best_action):
-        if best_action == "action(move(right))":
+        if best_action == "action(move(1))":
             self.position += 1
             self.n_right += 1
-        elif best_action == "action(move(left))":
+        elif best_action == "action(move(-1))":
             self.position -= 1
             self.n_left += 1
 
@@ -28,7 +28,9 @@ def main():
 
     world = World()
     # while not stop:
-    while world.position<6:
+    count = 0
+    while world.position<6 and count<10:
+
         # result = hype.plan_step("[]".format(world.position), N_SAMPLES, max_horizon=10, used_horizon=5, use_abstraction=False)
         result = hype.plan_step("[observation(position_obs)~={}]".format(world.position), N_SAMPLES, max_horizon=10, used_horizon=5, use_abstraction=False)
         print(result)
@@ -38,7 +40,8 @@ def main():
 
         world.execute_action(best_action)
 
-        world.position = 6
+        count +=1
+
 
     print("Final position: {}".format(world.position))
     print("Left movements: {}".format(world.n_left))
