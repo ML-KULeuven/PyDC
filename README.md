@@ -28,3 +28,18 @@ To make sure that everything is in order try running one of the examples, e.g.:
 python examples/example_dc/example_dc.py
 ```
 The examples are quiet self explanatory and should describe most of the API-options available in wrapper.
+
+
+## Cite ##
+
+If you use the PyDC wrapper in your research please cite as:
+```
+@inproceedings{zuidberg2018reactive,
+  title={Reactive Probabilistic Programming},
+  author={Zuidberg Dos Martires, Pedro and Dumancic, Sebastijan},
+  booktitle={The International Conference on Probabilistic Programming, Location: Boston, United States of America},
+  year={2018}
+}
+```
+
+or put the link to this repo in a footnote. Thanks!
