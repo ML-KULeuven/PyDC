@@ -5,43 +5,37 @@
 :- set_options(default),
    set_query_propagation(true),
    set_inference(backward(lazy)).
+
 :- set_current2nextcopy(false).
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+get_pos(X):t <- pos:t ~= distribution(val(X)).
+get_pos(X):t <- pos:t ~= X.
 
+reward:t ~ val(R) <- stop:t, R is 1000.0.
+reward:t ~ val(R) <-  \+stop:t, R is -1.0.
+stop:t <- get_pos(X):t,writeln(X), X>3.
 
-get_position(X):t <- position:t ~= distribution(val(X)).
-get_position(X):t <- position:t ~= X.
+adm(action(move(A,B))):t <-
+   member((A,B),[(1.0,0.0),(-1.0,0.0)]).
 
-stop:t <- get_position(X):t, X>5.
-reward:t ~ val(R) <- stop:t, R is 1000.
-reward:t ~ val(R) <-  \+stop:t, R is -1.
+pos:t+1 ~ val(X) <-
+   \+pos:t ~= _,
+   observation(pos) ~= X.
+pos:t+1 ~ val(X) <-
+   observation(pos) ~= X.
 
-
-
-movement(-1) <- true.
-movement(1) <- true.
-adm(action(move(X))):t <- movement(X).
-
-
-
-position:0 ~ val(ObsX) <-
-   observation(position_obs) ~= ObsX.
-position:t+1 ~ val(NX) <-
-   action(move(DX)),
-   get_position(X):t,
+pos:t+1 ~ val(NX) <-
+   action(move(DX,DY)),
+   pos:t ~= X,
    NX is X+DX.
-position:t+1 ~ val(OldX) <-
-   get_position(OldX):t.
 
-observation(position_obs):t+1 ~ val(_) <- true.
-
-
+observation(pos):t+1 ~ val(_) <-
+   pos:t+1 ~= _.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-maxV(D,V):t <- V is 1000.
-init :- executedplan_start.
+maxV(D,100):t <- true.
+
 getparam(left_right) :-
 	bb_put(user:spant,0),
 	setparam(
