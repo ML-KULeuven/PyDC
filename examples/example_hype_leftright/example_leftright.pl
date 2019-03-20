@@ -14,7 +14,7 @@ get_pos(X):t <- pos:t ~= X.
 
 reward:t ~ val(R) <- stop:t, R is 1000.0.
 reward:t ~ val(R) <-  \+stop:t, R is -1.0.
-stop:t <- get_pos(X):t, X>3.
+stop:t <- get_pos(X):t, X>4.
 
 adm(action(move(A,B))):t <-
    member((A,B),[(1.0,0.0),(-1.0,0.0)]).
@@ -24,11 +24,12 @@ pos:t+1 ~ val(X) <-
    observation(pos) ~= X.
 pos:t+1 ~ val(X) <-
    observation(pos) ~= X.
-
 pos:t+1 ~ val(NX) <-
    action(move(DX,DY)),
    pos:t ~= X,
    NX is X+DX.
+pos:t+1 ~ val(X) <-
+   pos:t ~= X.
 
 observation(pos):t+1 ~ val(_) <-
    pos:t+1 ~= _.

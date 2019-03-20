@@ -25,9 +25,9 @@ class World(object):
 def main():
     hype = HYPE("example_leftright.pl", N_SAMPLES)
     stop = False
-
+    count = 0
     world = World(initial_position=0)
-    while not stop:
+    while not stop and count<20:
         result = hype.plan_step(
             "[observation(pos)~=({})]".format(world.position),
             N_SAMPLES, max_horizon=10,
@@ -39,6 +39,7 @@ def main():
 
         world.execute_action(best_action)
         print(result)
+        count += 1
 
 
     print("Final position: {}".format(world.position))
