@@ -13,10 +13,10 @@ class World(object):
         self.n_right = 0
 
     def execute_action(self, best_action):
-        if best_action == "action(move(1.0,0.0))":
+        if best_action == "action(move(right))":
             self.position += 1
             self.n_right += 1
-        elif best_action == "action(move(-1.0,0.0))":
+        elif best_action == "action(move(left))":
             self.position -= 1
             self.n_left += 1
 

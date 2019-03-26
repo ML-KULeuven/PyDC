@@ -16,19 +16,23 @@ reward:t ~ val(R) <- stop:t, R is 1000.0.
 reward:t ~ val(R) <-  \+stop:t, R is -1.0.
 stop:t <- get_pos(X):t, X>4.
 
-adm(action(move(A,B))):t <-
-   member((A,B),[(1.0,0.0),(-1.0,0.0)]).
+adm(action(move(A))):t <-
+   member(move(A),[move(left),move(right)]).
 
-pos:t+1 ~ val(X) <-
+pos:t+1 ~ normal(X,1) <-
    \+pos:t ~= _,
    observation(pos) ~= X.
 pos:t+1 ~ val(X) <-
    observation(pos) ~= X.
-pos:t+1 ~ val(NX) <-
-   action(move(DX,DY)),
+pos:t+1 ~ normal(NX,1) <-
+   action(move(right)),
    pos:t ~= X,
-   NX is X+DX.
-pos:t+1 ~ val(X) <-
+   NX is X+1.
+pos:t+1 ~ normal(NX,1) <-
+   action(move(left)),
+   pos:t ~= X,
+   NX is X-1.
+pos:t+1 ~ normal(NX,1) <-
    pos:t ~= X.
 
 observation(pos):t+1 ~ val(_) <-
