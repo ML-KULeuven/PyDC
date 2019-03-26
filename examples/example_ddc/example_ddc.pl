@@ -33,7 +33,7 @@ annoying(X):t ~ finite([0.1:true,0.9:false]) <- vegan(X):t ~= false.
 mindful(X):t+1 ~ finite([0.99:true,0.01:false]) <- mindful(X):t ~= true.
 mindful(X):t+1 ~ finite([0.01:true,0.99:false]) <- mindful(X):t ~= false.
 
-influences(X):t+1 ~ val(false). %once a millenial has set their opinions they are not influenced by anybody anymore.
+influences(X,Y):t+1 ~ val(false). %once a millenial has set their opinions they are not influenced by anybody anymore.
 
 vegan(X):t+1 ~ finite([0.8:true,0.2:false]) <- vegan(X):t ~= true, mindful(X):t ~= false.
 
